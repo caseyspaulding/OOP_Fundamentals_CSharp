@@ -8,12 +8,11 @@
         public string FirstName { get; set; }
 
 
-
         public string FullName
         {
             get
             {
-                return LastName + "," + FirstName;
+                return LastName + ", " + FirstName;
             }
 
         }
@@ -31,5 +30,19 @@
                 _lastName = value;
             }
         }
+
+
+        //  Validates the customer data.
+        public bool Validate()
+        {
+            var isValid = true;
+
+            if (string.IsNullOrEmpty(EmailAddress)) isValid = false;
+            if (string.IsNullOrWhiteSpace(LastName)) isValid = false;
+
+            return isValid;
+        }
+
+        public static int InstanceCount { get; set; }
     }
 }
