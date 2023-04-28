@@ -2,6 +2,17 @@
 {
     public class Customer
     {
+        public Customer()
+        {
+
+        }
+
+        public Customer(int customerId)
+        {
+            CustomerId = customerId;
+        }
+
+
         public int CustomerId { get; private set; }
         public string EmailAddress { get; set; }
 
@@ -31,6 +42,11 @@
             }
         }
 
+        public Customer Retrieve(int customerId)
+        {
+            // code that retrives the defined customer
+            return new Customer();
+        }
 
         //  Validates the customer data.
         public bool Validate()
