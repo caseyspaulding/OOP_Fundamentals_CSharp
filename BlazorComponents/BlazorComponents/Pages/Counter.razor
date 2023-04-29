@@ -1,0 +1,82 @@
+﻿@page "/counter"
+using BlazorComponents.Shared;
+
+<PageTitle>Counter</PageTitle>
+
+<h1>@pageHeader</h1>
+
+@if (pageApproved)
+{
+    <div class="alert alert-success" role="alert">
+        Page Approved
+    </div>
+}
+
+@if (pageRejected)
+{
+    <div class="alert alert-danger" role="alert">
+        Page Rejected
+    </div>
+}
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+
+
+@if (pageApproved == false && pageRejected == false)
+{
+    <div class="row">
+        <div class="col-12">
+            <Vote OnVoted="HandleOnVoted"></Vote>
+        </div>
+    </div>
+}
+
+@code {
+    private bool pageApproved = false;
+    private bool pageRejected = false;
+    private int currentCount = 0;
+    private string pageHeader = "Counter";
+
+    private void HandleOnVoted(string result)
+    {
+        switch (result)
+        {
+            case "Approved":
+                pageApproved = true;
+                pageRejected = false;
+                break;
+            case "Rejected":
+                pageApproved = false;
+                pageRejected = true;
+                break;
+
+        }
+    }
+
+    [Parameter]
+    public int StartingValue { get; set; }
+
+    [Parameter]
+    public string ?PageHeader { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        currentCount = StartingValue;
+
+        if (string.IsNullOrWhiteSpace(PageHeader) == false)
+        {
+            pageHeader = PageHeader;
+        }
+    }
+    
+
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
