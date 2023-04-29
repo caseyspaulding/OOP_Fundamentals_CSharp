@@ -7,4 +7,9 @@
     <UserSecretsId>e4e22b4d-f938-4592-b622-e6ad97511934</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\NewFolder1\" />
+    <Folder Include="Pages\NewFolder\NewFolder\" />
+  </ItemGroup>
+
 </Project>
